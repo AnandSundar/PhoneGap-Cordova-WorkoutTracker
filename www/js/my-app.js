@@ -20,7 +20,7 @@ $$(document).on('deviceready', function() {
     //function call to create db if not exists
     createDatabase();
     //get the pre existing workouts from db
-
+    getWorkouts();
 });
 myApp.onPageInit('add', function (page) {
   //catch the submit event
@@ -46,7 +46,7 @@ function createDatabase() {
     },
     //succes
     function () {
-      console.log('Database and table created...');
+      // console.log('Database and table created...');
   });
 }
 
@@ -81,5 +81,36 @@ function addWorkout(workout){
   //success
   function () {
       window.location.href = 'index.html';
+  });
+}
+
+//get all the pre-existing workouts from db
+function getWorkouts() {
+  //[] is set to empty because we are not providing any options to the query
+  db.transaction(function (tx) {
+    tx.executeSql('SELECT * FROM workouts ORDER BY date DESC', [],
+    //success
+    function (tx, results) {
+      var len = results.rows.length;
+      console.log('Workouts table: ' +len+ ' rows found');
+      for (var i = 0; i < len; i++) {
+        $$('#workout-list').append(`
+          <li class="swipeout remove-callback" id="${results.rows.item(i).id}"> <a href="details.html?id=${results.rows.item(i).id}" class="item-link swipeout-content item-content">
+            <div class='item-inner'>
+              <div class="item-title">${results.rows.item(i).title}</div>
+              <div class="item-after">${results.rows.item(i).date}</div>
+            </div>
+          </a>
+          <div class="swipeout-actions-right">
+            <a href="#" class="swipeout-delete">Delete</a>
+          </div>
+          </li>
+          `);
+      }
+    },
+    //errror
+    function () {
+
+    });
   });
 }
