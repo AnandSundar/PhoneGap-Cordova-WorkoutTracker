@@ -1,0 +1,98 @@
+<!-- We don't need a full layout in this file because this page will be parsed with Ajax. -->
+
+<!-- Top Navbar-->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="left">
+            <a href="#" class="back link">
+                <i class="icon icon-back"></i>
+                <span>Back</span>
+            </a>
+        </div>
+        <div class="center sliding">Add Workout</div>
+        <div class="right">
+        </div>
+    </div>
+</div>
+<div class="pages">
+    <div data-page="add" class="page">
+        <div class="page-content">
+            <div class="content-block">
+                <form id='workout-form' class="ajax-submit">
+                  <div class="list-block">
+                    <ul>
+                      <!-- Title -->
+                      <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title label">Title</div>
+                            <div class="item-input">
+                              <input type="text" id="title" placeholder="Workout Title">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- Date -->
+                      <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title label">Date</div>
+                            <div class="item-input">
+                              <input type="date" id="date" placeholder="Date">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- Type -->
+                      <!-- Smart select item -->
+                      <li>
+                        <!-- Additional "smart-select" class -->
+                        <a href="#" class="item-link smart-select">
+                          <!-- select -->
+                          <select name="type" id='type'>
+                            <option value="Jogging">Jogging</option>
+                            <option value="Running">Running</option>
+                            <option value="Walking">Walking</option>
+                            <option value="Swimming">Swimming</option>
+                            <option value="Machine Weights">Machine Weights</option>
+                            <option value="Yoga" selected>Yoga</option>
+                            ...
+                          </select>
+                          <div class="item-content">
+                            <div class="item-inner">
+                              <!-- Select label -->
+                              <div class="item-title">Workout Type</div>
+                              <!-- Selected value, not required -->
+                              <div class="item-after">Yoga</div>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <!-- Another smart selects or list view elements -->
+                      <!-- length -->
+                      <li>
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title label">Length</div>
+                            <div class="item-input">
+                              <input type="number" id="length" placeholder="Workout Length">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="row">
+                    <div class="col-50">
+                      <a href="index.html" class="button button-big">
+                        Cancel </a>
+                    </div>
+                    <div class="col-50">
+                      <input type="submit" class="button button-big" value="Submit">
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
