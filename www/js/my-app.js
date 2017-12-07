@@ -29,6 +29,8 @@ $$(document).on('deviceready', function() {
     //get the pre existing workouts from db
     getWorkouts();
 });
+
+//Add page
 myApp.onPageInit('add', function (page) {
   //catch the submit event
   $$('#workout-form').on('submit', function (e) {
@@ -42,6 +44,14 @@ myApp.onPageInit('add', function (page) {
     addWorkout(data);
   });
 
+})
+
+//Details page
+myApp.onPageInit('details', function (page) {
+  //page.query.id will get the id when the query while loading the page
+  var workoutId = page.query.id;
+
+  getWorkoutDetails(workoutId);
 })
 
 function createDatabase() {
@@ -134,5 +144,30 @@ function deleteWorkout(id) {
   //success
   function () {
     //console.log('workout Deleted');
+  });
+}
+
+function getWorkoutDetails(id) {
+  db.transaction(function (tx) {
+    tx.executeSql('SELECT * FROM workouts WHERE id = "'+id+'"', [],
+    function (tx, result) {
+      $$('#workout-details').html(`
+        <div class="card">
+          <div class="card-header">${result.rows[0].title}</div>
+          <div class="card-content">
+            <div class="card-content-inner">
+              <ul>
+                <li>Workout Type: ${result.rows[0].type}</li>
+                <li>Workout Length: ${result.rows[0].length}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer">Date: ${result.rows[0].date}</div>
+        </div>
+        `);
+    },
+    function (err) {
+      console.log(err);
+    });
   });
 }
