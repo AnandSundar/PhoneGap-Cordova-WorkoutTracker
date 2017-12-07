@@ -11,6 +11,13 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+//Delete event to delete individual workouts from webSQL
+$$(document).on('deleted', '.remove-callback', function() {
+  var workoutId = $$(this).attr('id');
+
+  deleteWorkout(workoutId);
+});
+
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
@@ -76,7 +83,7 @@ function addWorkout(workout){
   },
   //error
   function (tx, err) {
-    console.log(err + ' ' + tx.message);
+    //console.log(err + ' ' + tx.message);
   },
   //success
   function () {
@@ -92,7 +99,7 @@ function getWorkouts() {
     //success
     function (tx, results) {
       var len = results.rows.length;
-      console.log('Workouts table: ' +len+ ' rows found');
+      //console.log('Workouts table: ' +len+ ' rows found');
       for (var i = 0; i < len; i++) {
         $$('#workout-list').append(`
           <li class="swipeout remove-callback" id="${results.rows.item(i).id}"> <a href="details.html?id=${results.rows.item(i).id}" class="item-link swipeout-content item-content">
@@ -112,5 +119,20 @@ function getWorkouts() {
     function () {
 
     });
+  });
+}
+
+//delete the particular workout using its ID
+function deleteWorkout(id) {
+  db.transaction(function(tx) {
+    tx.executeSql('DELETE FROM workouts WHERE id ="'+id+'"');
+  },
+  //error
+  function (err) {
+    //console.log(err + ' '+ tx.message);
+  },
+  //success
+  function () {
+    //console.log('workout Deleted');
   });
 }
