@@ -48,7 +48,7 @@ myApp.onPageInit('add', function (page) {
 
 //Details page
 myApp.onPageInit('details', function (page) {
-  //page.query.id will get the id when the query while loading the page
+  //page.query.id will get the id when the query runs while loading the page
   var workoutId = page.query.id;
 
   getWorkoutDetails(workoutId);
