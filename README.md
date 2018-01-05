@@ -1,5 +1,15 @@
-# Framework7 PhoneGap Application
+<h1>Workout Tracker App</h1>
+<p>This app lets you create your own personal workout list. This is a hybrid app that is built to be used as a web application, android appication or iOS application</p>
 
+<h2>Technologies Used</h2>
+<ul>
+<li>PhoneGap</li>
+<li>Cordova</li>
+<li>Framework 7</li>
+<li>WebSql</li>
+</ul>
+
+# Framework7 PhoneGap Application
 > [Framework7](http://www.idangero.us/framework7) is a Mobile UI framework that can be used to build hybrid apps with PhoneGap. This template allows you to get started using Framework7
   quickly.
 
@@ -25,13 +35,3 @@ In your browser, open the file:
 
     /www/index.html
 
-<h1>Workout Tracker App</h1>
-<p>This app lets you create your own personal workout list. This is a hybrid app that is built to be used as a web application, android appication or iOS application</p>
-
-<h2>Technologies Used</h2>
-<ul>
-<li>PhoneGap</li>
-<li>Cordova</li>
-<li>Framework 7</li>
-<li>WebSql</li>
-</ul>
